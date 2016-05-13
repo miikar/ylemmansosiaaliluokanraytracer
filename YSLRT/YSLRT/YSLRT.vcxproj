@@ -65,10 +65,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Primitives.cpp" />
+    <ClCompile Include="Ray.cpp" />
     <ClCompile Include="Raytracer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Raytracer.h" />
+    <ClInclude Include="Primitives.hpp" />
+    <ClInclude Include="Ray.hpp" />
+    <ClInclude Include="Raytracer.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

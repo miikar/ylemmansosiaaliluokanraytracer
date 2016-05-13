@@ -1,11 +1,10 @@
-#include <iostream>
-#include <string>
-#include <vector>
-#include "Raytracer.h"
+
+#include "Raytracer.hpp"
 
 int main(void)
 {
-	std::cout << "pöö" << std::endl;
-
+	Raytracer rt;
+	rt.calculatePixels(1980,1080);
+	rt.dataToFile("yslrt");
 	return 0;
 }
