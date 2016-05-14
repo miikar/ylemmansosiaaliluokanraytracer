@@ -1,9 +1,11 @@
 #ifndef PRIMITIVES_HPP
 #define PRIMITIVES_HPP
 
+#include "Ray.hpp"
+
 class Primitive {
 public:
-	Primitive();									// TÄHÄN CLASSIIN VOIS SIT LISÄTÄ KAIKENLAISIA PINNAN OMINAISUUKSIA 
+	Primitive(){}									// TÄHÄN CLASSIIN VOIS SIT LISÄTÄ KAIKENLAISIA PINNAN OMINAISUUKSIA 
 	virtual float intersect(Ray ray) = 0;			// KUTEN VÄRIN JA MITEN VALO KÄYTTÄYTYY NIIDEN KANSSA
 };
 

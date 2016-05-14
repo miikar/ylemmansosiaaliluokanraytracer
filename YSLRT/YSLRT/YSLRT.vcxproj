@@ -72,6 +72,7 @@
   <ItemGroup>
     <ClInclude Include="BMPheader.h" />
     <ClInclude Include="Primitives.hpp" />
+    <ClInclude Include="Ray.hpp" />
     <ClInclude Include="Raytracer.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

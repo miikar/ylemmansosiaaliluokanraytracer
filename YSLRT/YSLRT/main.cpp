@@ -6,9 +6,9 @@
 
 int main(void)
 {
-	std::vector<Primitive> map;
+	std::vector<Primitive*> map;
 	Sphere sp(glm::vec3(0.0f), 0.5f);
-	map.push_back(sp);
+	map.push_back(&sp);
 
 	Raytracer rt(1980, 1080);
 	rt.setMap(&map);
