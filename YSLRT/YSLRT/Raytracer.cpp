@@ -49,10 +49,10 @@ void Raytracer::dataToFile(std::string path) {
 	memcpy(infoheader, &bmih, 40);
 	errno_t erno;
 	erno = fopen_s(&f,"img.bmp", "wb");
-	if (erno)
-		fprintf(stderr, "apuva!\n");
+	if (erno != 0)
+		fprintf(stderr, "erno %d apuva!\n", erno);
 	fwrite(fileheader, 1, 14, f);
-	fwrite(fileheader, 1, 40, f);
+	fwrite(infoheader, 1, 40, f);
 	// Write pixelData
 	for (int y = height-1; y >= 0; y--) {
 		for (int x = 0; x < width; x++) {
