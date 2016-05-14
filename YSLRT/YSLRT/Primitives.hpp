@@ -1,21 +1,27 @@
 #ifndef PRIMITIVES_HPP
 #define PRIMITIVES_HPP
 
-class Sphere {
+class Primitive {
+public:
+	Primitive();									// TÄHÄN CLASSIIN VOIS SIT LISÄTÄ KAIKENLAISIA PINNAN OMINAISUUKSIA 
+	virtual float intersect(Ray ray) = 0;			// KUTEN VÄRIN JA MITEN VALO KÄYTTÄYTYY NIIDEN KANSSA
+};
+
+class Sphere: public Primitive {
 public:
 	Sphere(glm::vec3 center, glm::vec3 radius) : c(center), r(radius){}
 	float intersect(Ray ray);
 private:
-	glm::vec3 c;
-	glm::vec3 r;
+	glm::vec3 c; /* Center point */
+	glm::vec3 r; /* Radius */
 };
 
-class Triangle {
+class Triangle: public Primitive {
 public:
-	Triangle(glm::vec3 a, glm::vec3 b, glm::vec3 c) : a(a), b(b), c(c){}
+	Triangle(glm::vec3 v0, glm::vec3 v1, glm::vec3 v2) : v0(v0), v1(v1), v2(v2){}
 	float intersect(Ray ray);
 private:
-	glm::vec3 a, b, c;
+	glm::vec3 v0, v1, v2; /* 3 vertices of the triangle */
 };
 
 #endif
