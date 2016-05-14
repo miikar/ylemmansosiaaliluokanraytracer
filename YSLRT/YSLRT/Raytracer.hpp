@@ -4,11 +4,11 @@
 class Raytracer
 {
 public:
-	Raytracer::Raytracer(int w, int h); // w*h resolution
+	Raytracer(int w, int h) : pixelData(w * h), width(w), height(h){}
 	void calculatePixels(void); 
 	void dataToFile(std::string path); 
 private:
-	std::vector<std::vector<glm::vec3>> pixelData;
+	std::vector<glm::vec3> pixelData;	/* 1D ARRAY, W*H INDICES */
 	int width;
 	int height;
 };
@@ -16,9 +16,9 @@ private:
 class Ray
 {
 public:
-	Ray::Ray(glm::vec3 origin, glm::vec3 direction) : origin(origin), direction(direction){}
-	glm::vec3 origin;
-	glm::vec3 direction;
+	Ray(glm::vec3 origin, glm::vec3 direction) : origin(origin), direction(direction){}
+	glm::vec3 origin;    
+	glm::vec3 direction; /* Unit vector */
 };
 
 
