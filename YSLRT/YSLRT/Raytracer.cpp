@@ -16,7 +16,7 @@ void Raytracer::calculatePixels(void){
 			vec2 p = uv*2.0f - 1.0f;										  /* Pixel coordinates p [-1.0,1.0] */
 			p.x *= resolution.x / resolution.y;								  /* Adjust p to aspect ratio */
 
-			vec3 color = vec3(1.0f*p.y);
+			vec3 color = vec3(1.0f*p.x);
 			
 
 			clamp(color, 0.0f, 1.0f);
