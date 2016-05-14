@@ -14,13 +14,13 @@ void Raytracer::calculatePixels(void){
 
 			/* RAYTRACING STARTS HERE */
 			vec2 pIndex = vec2((float)x, (float)y);							  /* Current pixel (x,y) */
-			vec2 uv = vec2(pIndex.x / resolution.x, pIndex.x / resolution.y); /* Pixel coordinates uv [0.0,1.0] */
+			vec2 uv = pIndex/resolution;									/* Pixel coordinates uv [0.0,1.0] */
 			vec2 p = uv*2.0f - 1.0f;										  /* Pixel coordinates p [-1.0,1.0] */
 			p.x *= resolution.x / resolution.y;								  /* Adjust p to aspect ratio */
 
 			vec3 color = vec3(1.0f*p.x);			
 
-			clamp(color, 0.0f, 1.0f);
+			color = clamp(color, 0.0f, 1.0f);
 			pixelData[x+width*y] = color;
 		}
 	}
