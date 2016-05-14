@@ -1,8 +1,6 @@
 #ifndef PRIMITIVES_HPP
 #define PRIMITIVES_HPP
 
-#include "Ray.hpp"
-
 class Sphere {
 public:
 	Sphere(glm::vec3 center, glm::vec3 radius);
