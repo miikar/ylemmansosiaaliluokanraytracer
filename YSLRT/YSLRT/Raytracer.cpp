@@ -2,6 +2,7 @@
 #include <vector>
 #include <glm/glm.hpp>
 #include "Raytracer.hpp"
+#include "BMPheader.h"
 
 void Raytracer::calculatePixels(void){
 	for (int x = 0; x < width; x++){
@@ -29,8 +30,22 @@ void Raytracer::dataToFile(std::string path) {
 	// BMPFILEHEADER
 	// BMPINFOHEADER
 
-	unsigned char bmpfileheader[14];
-	unsigned char bmpinfoheader[54];
+	struct BMPFILEHEADER bmfh;
+	struct BMPINFOHEADER bmih;
+
+	// Set bmfh
+	bmfh.bfSize = width * height * 3 + 68;
+
+	// Set bmih
+	bmih.biWidth = width;
+	bmih.biHeight = height;
+	bmih.biSizeImage = width * height * 3;
+
+	bmih.biXPelsPerMeter = 0;
+	bmih.biYPelsPerMeter = 0;
+
+	// Image
+
 
 	FILE *f;
 	f = fopen("img.bmp", "w");
