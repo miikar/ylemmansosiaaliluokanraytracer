@@ -4,7 +4,7 @@
 #include "Raytracer.hpp"
 
 
-void dataToFile(std::string path) {
+void Raytracer::dataToFile(std::string path) {
 	// BMPFILEHEADER
 	// BMPINFOHEADER
 
