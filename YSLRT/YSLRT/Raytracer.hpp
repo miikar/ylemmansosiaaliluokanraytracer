@@ -4,6 +4,7 @@
 class Raytracer
 {
 public:
+	Raytracer::Raytracer();
 	void calculatePixels(int w, int h); // w*h resolution
 	void dataToFile(std::string path); 
 private:
