@@ -1,6 +1,7 @@
 #include <string>
 #include <vector>
 #include <glm/glm.hpp>
+#include "Primitives.hpp"
 #include "Raytracer.hpp"
 
 void Raytracer::calculatePixels(void){
@@ -16,8 +17,7 @@ void Raytracer::calculatePixels(void){
 			vec2 p = uv*2.0f - 1.0f;										  /* Pixel coordinates p [-1.0,1.0] */
 			p.x *= resolution.x / resolution.y;								  /* Adjust p to aspect ratio */
 
-			vec3 color = vec3(1.0f*p.x);
-			
+			vec3 color = vec3(1.0f*p.x);			
 
 			clamp(color, 0.0f, 1.0f);
 			pixelData[x+width*y] = color;
