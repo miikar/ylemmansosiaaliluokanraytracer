@@ -52,17 +52,12 @@ void Raytracer::dataToFile(std::string path) {
 	bmih.biXPelsPerMeter = 0;
 	bmih.biYPelsPerMeter = 0;
 
-	unsigned char fileheader[14];
-	unsigned char infoheader[40];
-
-	memcpy(fileheader, &bmfh, 14);
-	memcpy(infoheader, &bmih, 40);
 	errno_t erno;
 	erno = fopen_s(&f,"img.bmp", "wb");
 	if (erno != 0)
 		fprintf(stderr, "erno %d apuva!\n", erno);
-	fwrite(fileheader, 1, 14, f);
-	fwrite(infoheader, 1, 40, f);
+	fwrite(&bmfh, 1, 14, f);
+	fwrite(&bmih, 1, 40, f);
 	// Write pixelData
 	for (int y = height-1; y >= 0; y--) {
 		for (int x = 0; x < width; x++) {
