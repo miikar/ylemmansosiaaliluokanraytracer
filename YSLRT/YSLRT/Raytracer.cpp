@@ -8,7 +8,7 @@
 void Raytracer::calculatePixels(void){
 	using namespace glm;
 	vec2 resolution = vec2((float)width, (float)height);
-
+	#pragma omp parallel for
 	for (int x = 0; x < width; x++){
 		for (int y = 0; y < height; y++){		
 
@@ -59,7 +59,7 @@ void Raytracer::dataToFile(std::string path) {
 	fwrite(&bmfh, 1, 14, f);
 	fwrite(&bmih, 1, 40, f);
 	// Write pixelData
-	for (int y = height-1; y >= 0; y--) {
+	for (int y = 0; y < height; y++) {
 		for (int x = 0; x < width; x++) {
 			r = (unsigned char)(pixelData[x + width*y].r * 255.0f);
 			g = (unsigned char)(pixelData[x + width*y].g * 255.0f);

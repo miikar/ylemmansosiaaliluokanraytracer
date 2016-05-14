@@ -35,7 +35,7 @@ float Sphere::intersect(Ray ray)
 */
 float Triangle::intersect(Ray ray)  
 {	
-	static float epsilon = 0.000001;
+	static float epsilon = 0.000001f;
 
 	vec3 e1, e2;	//Edge1, Edge2
 	vec3 P, Q, T;
