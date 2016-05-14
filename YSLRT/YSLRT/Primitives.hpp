@@ -9,11 +9,11 @@ public:
 
 class Sphere: public Primitive {
 public:
-	Sphere(glm::vec3 center, glm::vec3 radius) : c(center), r(radius){}
+	Sphere(glm::vec3 center, float radius) : c(center), r(radius){}
 	float intersect(Ray ray);
 private:
 	glm::vec3 c; /* Center point */
-	glm::vec3 r; /* Radius */
+	float r; /* Radius */
 };
 
 class Triangle: public Primitive {
@@ -22,6 +22,14 @@ public:
 	float intersect(Ray ray);
 private:
 	glm::vec3 v0, v1, v2; /* 3 vertices of the triangle */
+};
+
+class Plane: public Primitive {
+public:
+	Plane(glm::vec3 n) : n(n){}
+	float intersect(Ray ray);
+private:
+	glm::vec3 n; /* Plane normal */
 };
 
 #endif
