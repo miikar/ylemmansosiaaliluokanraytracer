@@ -8,7 +8,7 @@
 void Raytracer::calculatePixels(void){
 	using namespace glm;
 	vec2 resolution = vec2((float)width, (float)height);
-
+	#pragma omp parallel for
 	for (int x = 0; x < width; x++){
 		for (int y = 0; y < height; y++){		
 

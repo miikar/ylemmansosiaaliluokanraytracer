@@ -29,8 +29,8 @@ int main(void)
 	ElapsedMicroseconds.QuadPart = EndingTime.QuadPart - StartingTime.QuadPart;
 	ElapsedMicroseconds.QuadPart *= 1000000;
 	ElapsedMicroseconds.QuadPart /= Frequency.QuadPart;
-	time = ElapsedMicroseconds.QuadPart / 1000000;
-	time += ((double)(ElapsedMicroseconds.QuadPart % 1000000)) / 1000000.0;
+	time = (double) (ElapsedMicroseconds.QuadPart / 1000000ll);
+	time += ((double)(ElapsedMicroseconds.QuadPart % 1000000ll)) / 1000000.0;
 	
 	std::cout << std::setprecision(7)<< "Image rendered in " << time << " seconds." << std::endl;
 	return 0;
