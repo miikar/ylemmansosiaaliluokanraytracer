@@ -8,7 +8,7 @@ public:
 	void calculatePixels(void); 
 	void dataToFile(std::string path); 
 private:
-	std::vector<glm::vec3> pixelData;	/* 1D ARRAY, W*H INDICES */
+	std::vector<glm::vec3> pixelData;	/* 1D ARRAY, W*H INDICES - Access [i][j] with [i+width*j] */
 	int width;
 	int height;
 };
