@@ -4,3 +4,14 @@
 #include "Raytracer.hpp"
 
 
+void dataToFile(std::string path) {
+	// BMPFILEHEADER
+	// BMPINFOHEADER
+
+	unsigned char bmpfileheader[14];
+	unsigned char bmpinfoheader[54];
+
+	FILE *f;
+	f = fopen("img.bmp", "w")
+	fclose(f);
+}
