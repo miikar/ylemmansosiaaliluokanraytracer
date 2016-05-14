@@ -1,5 +1,6 @@
 #include <glm/glm.hpp>
 #include "Primitives.hpp"
+#include "Raytracer.hpp"
 
 Sphere::Sphere(glm::vec3 center, glm::vec3 radius){
 	c = center;
