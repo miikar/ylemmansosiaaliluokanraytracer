@@ -1,3 +1,6 @@
+#pragma pack(push)
+#pragma pack(1) 
+
 struct BMPFILEHEADER
 {
 	__int16 bfType = 19778;
@@ -10,15 +13,17 @@ struct BMPFILEHEADER
 
 struct BMPINFOHEADER
 {
-	__int16 biSize = 40;
-	__int16 biWidth;
-	__int16 biHeight;
+	__int32 biSize = 40;
+	__int32 biWidth;
+	__int32 biHeight;
 	__int16 biPlanes = 1;
 	__int16 biBitCount = 24;
-	__int16 biCompression = 0;
-	__int16 biSizeImage;
-	__int16 biXPelsPerMeter;
-	__int16 biYPelsPerMeter;
-	__int16 biClrUsed = 0;
-	__int16 biClrImportant = 0;
+	__int32 biCompression = 0;
+	__int32 biSizeImage;
+	__int32 biXPelsPerMeter;
+	__int32 biYPelsPerMeter;
+	__int32 biClrUsed = 0;
+	__int32 biClrImportant = 0;
 }bmih;
+
+#pragma pack(pop) 
