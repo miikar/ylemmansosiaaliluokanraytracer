@@ -3,8 +3,8 @@
 
 int main(void)
 {
-	Raytracer rt;
-	rt.calculatePixels(1980,1080);
+	Raytracer rt(1980, 1080);
+	rt.calculatePixels();
 	rt.dataToFile("yslrt");
 	return 0;
 }

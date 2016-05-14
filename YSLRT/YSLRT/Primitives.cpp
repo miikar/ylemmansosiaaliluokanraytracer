@@ -7,7 +7,7 @@ Sphere::Sphere(glm::vec3 center, glm::vec3 radius){
 	r = radius;
 }
 
-double Sphere::intersect(Ray ray)
+float Sphere::intersect(Ray ray)
 {
 	return 0.0;
 }

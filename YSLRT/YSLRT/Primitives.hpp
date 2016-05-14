@@ -5,7 +5,7 @@ class Sphere {
 public:
 	Sphere(glm::vec3 center, glm::vec3 radius);
 
-	double intersect(Ray ray);
+	float intersect(Ray ray);
 private:
 	glm::vec3 c;
 	glm::vec3 r;

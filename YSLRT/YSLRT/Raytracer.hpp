@@ -4,11 +4,13 @@
 class Raytracer
 {
 public:
-	Raytracer::Raytracer();
-	void calculatePixels(int w, int h); // w*h resolution
+	Raytracer::Raytracer(int w, int h); // w*h resolution
+	void calculatePixels(void); 
 	void dataToFile(std::string path); 
 private:
 	std::vector<std::vector<glm::vec3>> pixelData;
+	int width;
+	int height;
 };
 
 class Ray
