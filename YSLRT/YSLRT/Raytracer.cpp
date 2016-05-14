@@ -27,27 +27,42 @@ void Raytracer::calculatePixels(void){
 }
 
 void Raytracer::dataToFile(std::string path) {
-	// BMPFILEHEADER
-	// BMPINFOHEADER
-
-	struct BMPFILEHEADER bmfh;
-	struct BMPINFOHEADER bmih;
+	FILE *f;
+	unsigned char r, g, b;
+	unsigned char pad[3] = { 0, 0, 0};
+	int padSize = (4 - (width * 3) % 4) % 4;
 
 	// Set bmfh
-	bmfh.bfSize = width * height * 3 + 68;
+	bmfh.bfSize = width * height * 3 + 54;
 
 	// Set bmih
 	bmih.biWidth = width;
 	bmih.biHeight = height;
 	bmih.biSizeImage = width * height * 3;
-
 	bmih.biXPelsPerMeter = 0;
 	bmih.biYPelsPerMeter = 0;
 
-	// Image
+	unsigned char fileheader[14];
+	unsigned char infoheader[40];
 
+	memcpy(fileheader, &bmfh, 14);
+	memcpy(infoheader, &bmih, 40);
 
-	FILE *f;
-	f = fopen("img.bmp", "w");
+	f = fopen("img.bmp", "wb");
+	fwrite(fileheader, 1, 14, f);
+	fwrite(fileheader, 1, 40, f);
+	// Write pixelData
+	for (int y = height-1; y >= 0; y++) {
+		for (int x = 0; x < width; x++) {
+			r = pixelData[x + width*y].r * 255;
+			g = pixelData[x + width*y].g * 255;
+			b = pixelData[x + width*y].b * 255;
+			fwrite(&r, 1, 1, f);
+			fwrite(&g, 1, 1, f);
+			fwrite(&b, 1, 1, f);
+		}
+		fwrite(pad, 1, padSize, f);
+	}
+
 	fclose(f);
 }

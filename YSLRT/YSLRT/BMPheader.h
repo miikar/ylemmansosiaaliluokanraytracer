@@ -4,7 +4,7 @@ struct BMPFILEHEADER
 	__int32 bfSize;
 	__int16 bfReserved1 = 0;
 	__int16 bfReserved2 = 0;
-	__int32 bfOffBits = 68;
+	__int32 bfOffBits = 54;
 }bmfh;
 
 
