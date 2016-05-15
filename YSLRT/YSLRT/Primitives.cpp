@@ -11,21 +11,21 @@ float Sphere::intersect(Ray ray)
 
 	// Quadratic equation
 	float a = dot(ray.direction, ray.direction);
-	float b = 2 * dot(ray.direction, dist);
+	float b = 2.0f * dot(ray.direction, dist);
 	float c = dot(dist, dist) - (r * r);
-	float discr = b * b - 4 * a * c;
+	float discr = b * b - 4.0f * a * c;
 
-	if (discr < 0) return -1.0f;
-	else if (discr == 0) x0 = x1 = -0.5 * b / a;
+	if (discr < 0.0f) return -1.0f;
+	else if (discr == 0.0f) x0 = x1 = -0.5f * b / a;
 	else {
 		float q = (b > 0) ?
-			-0.5 * (b + sqrt(discr)) :
-			-0.5 * (b - sqrt(discr));
+			-0.5f * (b + sqrt(discr)) :
+			-0.5f * (b - sqrt(discr));
 		x0 = q / a;
 		x1 = c / q;
 	}
 
-	if (!(x0 < 0) && x0 < x1)
+	if (!(x0 < 0.0f) && x0 < x1)
 		return x0;
 	return x1;
 }
@@ -42,7 +42,7 @@ float Triangle::intersect(Ray ray)
 	float det, inv_det, u, v;
 	float t;
 
-	//Find vectors for two edges sharing V1
+	//Find vectors for two edges sharing V0
 	e1 = v1 - v0;
 	e2 = v2 - v0;
 	//Begin calculating determinant - also used to calculate u parameter
@@ -55,7 +55,7 @@ float Triangle::intersect(Ray ray)
 		return -1.0f;
 	inv_det = 1.0f / det;
 
-	//calculate distance from V1 to ray origin
+	//calculate distance from V0 to ray origin
 	T = ray.origin - v0;
 
 	//Calculate u parameter and test bound
