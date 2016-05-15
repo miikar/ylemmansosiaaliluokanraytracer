@@ -26,7 +26,7 @@ void Raytracer::calculatePixels(void){
 			Primitive * closest = nullptr;
 			for (auto i : *map)
 			{
-				t = i->intersect(ray);
+				t = i->intersect(&ray);
 				if (t > 0.0f && t < tMin)
 				{
 					tMin = t;
@@ -36,6 +36,8 @@ void Raytracer::calculatePixels(void){
 			if (closest != nullptr)
 			{
 				color = closest->color;
+				vec3 ld = normalize(vec3(2.0f, 2.0f, -2.0f));
+				color *= dot(ld, closest->getNormal(&ray));
 			}
 
 
