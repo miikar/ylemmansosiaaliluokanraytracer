@@ -17,8 +17,8 @@ void Raytracer::calculatePixels(void){
 			vec2 uv = pIndex/resolution;									/* Pixel coordinates uv [0.0,1.0] */
 			vec2 p = uv*2.0f - 1.0f;										 /* Pixel coordinates p [-1.0,1.0] */
 			p.x *= resolution.x / resolution.y;								 /* Adjust p to aspect ratio */
-			vec3 c = vec3(0.0f, 0.0f, -1.0f);
-			Ray ray(c, vec3(p,0.0f)-c);
+			vec3 c = vec3(0.0f, 0.0f, -2.0f);								/* camera position*/
+			Ray ray(c, normalize(vec3(p, 0.0f) - c));						/* ray origin and direction */
 
 			vec3 color = vec3(1.0f);
 			float t;
