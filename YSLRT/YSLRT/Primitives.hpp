@@ -21,10 +21,15 @@ private:
 
 class Triangle: public Primitive {
 public:
-	Triangle(glm::vec3 v0, glm::vec3 v1, glm::vec3 v2, glm::vec3 color) : Primitive(color), v0(v0), v1(v1), v2(v2){}
+	Triangle(glm::vec3 v0, glm::vec3 v1, glm::vec3 v2, glm::vec3 color);
+	Triangle(glm::vec3 v0, glm::vec3 v1, glm::vec3 v2, 
+			 glm::vec3 n0, glm::vec3 n1, glm::vec3 n2, glm::vec3 color): 
+			 Primitive(color), v0(v0), v1(v1), v2(v2), 
+							   n0(n0), n1(n1), n2(n2)	{}
 	float intersect(Ray ray);
 private:
 	glm::vec3 v0, v1, v2; /* 3 vertices of the triangle */
+	glm::vec3 n0, n1, n2; /* per vertex normals */
 };
 
 class Plane: public Primitive {

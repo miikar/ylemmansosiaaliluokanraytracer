@@ -30,6 +30,13 @@ float Sphere::intersect(Ray ray)
 	return x1;
 }
 
+Triangle::Triangle(vec3 v0, vec3 v1, vec3 v2, vec3 color) : Primitive(color), v0(v0), v1(v1), v2(v2){
+	vec3 n = cross((v1 - v0), (v2 - v0));
+	n0 = n;
+	n1 = n;
+	n2 = n;
+}
+
 /* Copypaste on paras
 * https://en.wikipedia.org/wiki/M%C3%B6ller%E2%80%93Trumbore_intersection_algorithm
 */
