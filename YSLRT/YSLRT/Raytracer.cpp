@@ -62,7 +62,7 @@ void Raytracer::dataToFile(std::string path) {
 	bmih.biYPelsPerMeter = 0;
 
 	errno_t erno;
-	erno = fopen_s(&f,"img.bmp", "wb");
+	erno = fopen_s(&f, path.append(".bmp").c_str(), "wb");
 	if (erno != 0)
 		fprintf(stderr, "erno %d apuva!\n", erno);
 	fwrite(&bmfh, 1, 14, f);
