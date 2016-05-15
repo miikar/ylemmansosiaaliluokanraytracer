@@ -22,7 +22,7 @@ void Raytracer::calculatePixels(void){
 
 			vec3 color = vec3(1.0f);
 			float t;
-			float tMin = 100.0f;
+			float tMin = 10000.0f;
 			Primitive * closest = nullptr;
 			for (auto i : *map)
 			{
