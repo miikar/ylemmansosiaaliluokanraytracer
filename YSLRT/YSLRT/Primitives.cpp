@@ -26,8 +26,17 @@ float Sphere::intersect(Ray ray)
 	}
 
 	if (!(x0 < 0.0f) && x0 < x1)
+	{
+		ip = ray.origin + ray.direction*x0;
 		return x0;
+	}
+	ip = ray.origin + ray.direction*x1;
 	return x1;
+}
+
+vec3 Sphere::getNormal(void)
+{
+	return normalize(ip - c);
 }
 
 Triangle::Triangle(vec3 v0, vec3 v1, vec3 v2, vec3 color) : Primitive(color), v0(v0), v1(v1), v2(v2){
@@ -84,10 +93,16 @@ float Triangle::intersect(Ray ray)
 	t = dot(e2, Q) * inv_det;
 
 	if (t > epsilon) { //ray intersection
+		uv = vec2(u, v);
 		return t;
 	}
 
 	return 0.0f;
+}
+
+vec3 Triangle::getNormal(void)
+{
+	return (1.0f - uv.x - uv.y)*v0+ uv.x*v1 + uv.y*v2;
 }
 
 float Plane::intersect(Ray ray)
