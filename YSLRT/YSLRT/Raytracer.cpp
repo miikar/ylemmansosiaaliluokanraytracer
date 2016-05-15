@@ -21,15 +21,24 @@ void Raytracer::calculatePixels(void){
 			Ray ray(c, vec3(p,0.0f)-c);
 
 			vec3 color = vec3(1.0f);
-
-			for (auto &i : *map)
+			float t;
+			float tMin = 100.0f;
+			Primitive * closest = nullptr;
+			for (auto i : *map)
 			{
-				if (i->intersect(ray) > 0.0f)
+				t = i->intersect(ray);
+				if (t > 0.0f && t < tMin)
 				{
-					color = vec3(0.4f, 0.6f, 0.7f);
+					tMin = t;
+					closest = i;
 				}
 			}
-			
+			if (closest != nullptr)
+			{
+				color = closest->color;
+			}
+
+
 			color = clamp(color, 0.0f, 1.0f);
 			pixelData[x+width*y] = color;
 		}

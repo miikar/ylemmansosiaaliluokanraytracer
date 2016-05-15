@@ -5,13 +5,14 @@
 
 class Primitive {
 public:
-	Primitive(){}									// TÄHÄN CLASSIIN VOIS SIT LISÄTÄ KAIKENLAISIA PINNAN OMINAISUUKSIA 
+	Primitive(glm::vec3 color) : color(color){}		// TÄHÄN CLASSIIN VOIS SIT LISÄTÄ KAIKENLAISIA PINNAN OMINAISUUKSIA 
 	virtual float intersect(Ray ray) = 0;			// KUTEN VÄRIN JA MITEN VALO KÄYTTÄYTYY NIIDEN KANSSA
+	glm::vec3 color;
 };
 
 class Sphere: public Primitive {
 public:
-	Sphere(glm::vec3 center, float radius) : c(center), r(radius){}
+	Sphere(glm::vec3 center, float radius, glm::vec3 color) : Primitive(color), c(center), r(radius){}
 	float intersect(Ray ray);
 private:
 	glm::vec3 c; /* Center point */
@@ -20,7 +21,7 @@ private:
 
 class Triangle: public Primitive {
 public:
-	Triangle(glm::vec3 v0, glm::vec3 v1, glm::vec3 v2) : v0(v0), v1(v1), v2(v2){}
+	Triangle(glm::vec3 v0, glm::vec3 v1, glm::vec3 v2, glm::vec3 color) : Primitive(color), v0(v0), v1(v1), v2(v2){}
 	float intersect(Ray ray);
 private:
 	glm::vec3 v0, v1, v2; /* 3 vertices of the triangle */
@@ -28,7 +29,7 @@ private:
 
 class Plane: public Primitive {
 public:
-	Plane(glm::vec3 n) : n(n){}
+	Plane(glm::vec3 n, glm::vec3 color) : Primitive(color), n(n){}
 	float intersect(Ray ray);
 private:
 	glm::vec3 n; /* Plane normal */
