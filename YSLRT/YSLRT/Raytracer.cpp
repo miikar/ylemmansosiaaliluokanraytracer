@@ -46,8 +46,23 @@ void Raytracer::calculatePixels(void){
 			{
 				ray.ip.xyz = ray.origin + tMin*ray.direction;
 				color = closest->color;
-				vec3 ld = normalize(vec3(-1.0f, 0.75f, 1.0f)-ray.ip.xyz);
-				color *= dot(ld, closest->getNormal(&ray));
+				
+				float ks = 0.4f;		//specular reflection constant
+				float kd = 0.5f;		//diffuse reflection constant
+				float ka = 0.1f;		//ambient reflection constant
+				float a = 12.0f;		//shininess constant
+
+				vec3 lp = vec3(-0.5f, 1.0f, 1.0f);
+				vec3 l = normalize(lp - ray.ip.xyz); //surface to light vector
+				vec3 n = closest->getNormal(&ray);				//surface normal vector
+				vec3 v = normalize(ray.origin - ray.ip.xyz);			//surface to camera vector
+				vec3 h = normalize(l + v);			//the "half way vector"
+
+				vec3 illumination = vec3(ka)			//add ambient light
+					+ kd*max(dot(l, n), 0.0f) 			//add diffuse light
+					+ ks*max(pow(dot(n, h), a), 0.0f);	//add specular light
+
+				color *= illumination;
 			}
 
 
