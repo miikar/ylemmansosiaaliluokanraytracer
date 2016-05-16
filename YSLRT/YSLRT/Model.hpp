@@ -9,7 +9,6 @@ class Model
 {
 public:
 	Model(std::string path);
-	const std::vector<Triangle*> &getTriangles(void) const;
 private:
 	void OBJparse(std::string path);
 	std::vector<glm::vec3> vertices;
