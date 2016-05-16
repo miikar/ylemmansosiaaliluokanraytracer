@@ -8,9 +8,10 @@
 class Model
 {
 public:
-	Model();
-	void OBJparse(std::string);
+	Model(std::string path);
+	const std::vector<Triangle*> &getTriangles(void) const;
 private:
+	void OBJparse(std::string path);
 	std::vector<glm::vec3> vertices;
 	std::vector<unsigned int> vertexIndices;
 };

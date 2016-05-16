@@ -2,6 +2,16 @@
 using namespace std;
 
 
+Model::Model(std::string path)
+{
+	OBJparse(path);
+}
+
+const std::vector<Triangle*> &Model::getTriangles(void) const
+{
+
+}
+
 void Model::OBJparse(string path) {
 	FILE *obj_file;
 	char *token;
