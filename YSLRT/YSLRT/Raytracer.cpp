@@ -49,7 +49,7 @@ void Raytracer::calculatePixels(void){
 				
 				float ks = 0.4f;		//specular reflection constant
 				float kd = 0.5f;		//diffuse reflection constant
-				float ka = 0.1f;		//ambient reflection constant
+				float ka = 0.2f;		//ambient reflection constant
 				float a = 12.0f;		//shininess constant
 
 				vec3 lp = vec3(-0.5f, 1.0f, 1.0f);
@@ -58,9 +58,23 @@ void Raytracer::calculatePixels(void){
 				vec3 v = normalize(ray.origin - ray.ip.xyz);			//surface to camera vector
 				vec3 h = normalize(l + v);			//the "half way vector"
 
-				vec3 illumination = vec3(ka)			//add ambient light
-					+ kd*max(dot(l, n), 0.0f) 			//add diffuse light
-					+ ks*max(pow(dot(n, h), a), 0.0f);	//add specular light
+				float st;
+				float shadow = 1.0f;
+				Ray shadowRay(ray.ip.xyz+l*0.0001f, l);
+				for (auto i : *map)
+				{
+					st = i->intersect(&shadowRay);
+					if (st > 0.0f && st < distance(lp, ray.ip.xyz))
+					{
+						shadow = 0.0f;
+						break;
+					}
+				}
+
+				vec3 illumination = vec3(ka)							//add ambient light
+									+ (kd*max(dot(l, n), 0.0f) 			//add diffuse light
+									+ ks*max(pow(dot(n, h), a), 0.0f))	//add specular light
+									* shadow;							//add shadow
 
 				color *= illumination;
 			}
