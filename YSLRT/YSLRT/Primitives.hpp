@@ -37,11 +37,12 @@ private:
 
 class Plane: public Primitive {
 public:
-	Plane(glm::vec3 n, glm::vec3 color) : Primitive(color), n(n){}
+	Plane(glm::vec3 n, glm::vec3 p0, glm::vec3 color) : Primitive(color), n(normalize(n)), p0(p0){}
 	float intersect(Ray *ray);
 	glm::vec3 getNormal(Ray *ray){ return n; }
 private:
 	glm::vec3 n; /* Plane normal */
+	glm::vec3 p0; 
 };
 
 #endif

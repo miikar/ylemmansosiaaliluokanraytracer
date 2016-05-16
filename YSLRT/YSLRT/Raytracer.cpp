@@ -8,6 +8,13 @@
 void Raytracer::calculatePixels(void){
 	using namespace glm;
 	vec2 resolution = vec2((float)width, (float)height)-1.0f;
+
+	vec3 ang = vec3(3.14f*0.25f, 3.14f*0.5f, 0.0f);
+	mat3 x = mat3(1.0, 0.0, 0.0, 0.0, cos(ang.x), -sin(ang.x), 0.0, sin(ang.x), cos(ang.x));
+	mat3 y = mat3(cos(ang.y), 0.0, sin(ang.y), 0.0, 1.0, 0.0, -sin(ang.y), 0.0, cos(ang.y));
+	mat3 z = mat3(cos(ang.z), -sin(ang.z), 0.0, sin(ang.z), cos(ang.z), 0.0, 0.0, 0.0, 1.0);
+	mat3 rot = x*y*z;
+
 	#pragma omp parallel for
 	for (int x = 0; x < width; x++){
 		for (int y = 0; y < height; y++){		
@@ -17,12 +24,14 @@ void Raytracer::calculatePixels(void){
 			vec2 uv = pIndex/resolution;									/* Pixel coordinates uv [0.0,1.0] */
 			vec2 p = uv*2.0f - 1.0f;										 /* Pixel coordinates p [-1.0,1.0] */
 			p.x *= resolution.x / resolution.y;								 /* Adjust p to aspect ratio */
-			vec3 c = vec3(0.0f, 0.0f, -2.0f);								/* camera position*/
-			Ray ray(c, normalize(vec3(p, 0.0f) - c));						/* ray origin and direction */
+
+			float z = -2.0f;
+			vec3 c = vec3(0.0f, 0.0f, z-2.0f);								/* camera position*/
+			Ray ray(c*rot, normalize(vec3(p, z) - c)*rot);				/* ray origin and direction */
 
 			vec3 color = vec3(1.0f);
 			float t;
-			float tMin = 10000.0f;
+			float tMin = 1000.0f;
 			Primitive * closest = nullptr;
 			for (auto i : *map)
 			{
@@ -35,8 +44,9 @@ void Raytracer::calculatePixels(void){
 			}
 			if (closest != nullptr)
 			{
+				ray.ip.xyz = ray.origin + tMin*ray.direction;
 				color = closest->color;
-				vec3 ld = normalize(vec3(2.0f, 2.0f, -2.0f));
+				vec3 ld = normalize(vec3(-1.0f, 0.75f, 1.0f)-ray.ip.xyz);
 				color *= dot(ld, closest->getNormal(&ray));
 			}
 
@@ -75,9 +85,9 @@ void Raytracer::dataToFile(std::string path) {
 			r = (unsigned char)(pixelData[x + width*y].r * 255.0f);
 			g = (unsigned char)(pixelData[x + width*y].g * 255.0f);
 			b = (unsigned char)(pixelData[x + width*y].b * 255.0f);
-			fwrite(&r, 1, 1, f);
-			fwrite(&g, 1, 1, f);
 			fwrite(&b, 1, 1, f);
+			fwrite(&g, 1, 1, f);
+			fwrite(&r, 1, 1, f);
 		}
 		fwrite(pad, 1, padSize, f);
 	}

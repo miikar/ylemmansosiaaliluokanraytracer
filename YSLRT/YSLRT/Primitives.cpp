@@ -26,11 +26,7 @@ float Sphere::intersect(Ray * ray)
 	}
 
 	if (!(x0 < 0.0f) && x0 < x1)
-	{
-		ray->ip.xyz = ray->origin + ray->direction*x0;
 		return x0;
-	}
-	ray->ip.xyz = ray->origin + ray->direction*x1;
 	return x1;
 }
 
@@ -107,5 +103,5 @@ vec3 Triangle::getNormal(Ray * ray)
 
 float Plane::intersect(Ray * ray)
 {
-	return 0.0f;
+	return dot(p0 - ray->origin, n) / dot(ray->direction, n);
 }
