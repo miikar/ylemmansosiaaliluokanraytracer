@@ -69,11 +69,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Model.cpp" />
     <ClCompile Include="Primitives.cpp" />
     <ClCompile Include="Raytracer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BMPheader.h" />
+    <ClInclude Include="Model.hpp" />
     <ClInclude Include="Primitives.hpp" />
     <ClInclude Include="Ray.hpp" />
     <ClInclude Include="Raytracer.hpp" />
