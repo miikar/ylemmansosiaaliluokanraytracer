@@ -12,7 +12,7 @@ public:
 	void OBJparse(std::string);
 private:
 	std::vector<glm::vec3> vertices;
-	vector<unsigned int> vertexIndices;
+	std::vector<unsigned int> vertexIndices;
 };
 
 #endif
