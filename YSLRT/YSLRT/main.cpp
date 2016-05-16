@@ -17,11 +17,12 @@ int main(void)
 	QueryPerformanceCounter(&StartingTime);
 
 	std::vector<Primitive*> map;
-	Triangle tri1(glm::vec3(-0.25f, 0.0f, -0.25f), glm::vec3(0.0f, 0.5f, 0.0f), glm::vec3(0.25, 0.0f, -0.25f), glm::vec3(0.7f, 0.3f, 0.4f));
-	Triangle tri2(glm::vec3(-0.25f, 0.0f, 0.25f), glm::vec3(0.0f, 0.5f, 0.0f), glm::vec3(-0.25f, 0.0f, -0.25f), glm::vec3(0.7f, 0.3f, 0.4f));
-	Triangle tri3(glm::vec3(0.25f, 0.0f, 0.25f), glm::vec3(0.0f, 0.5f, 0.0f), glm::vec3(-0.25f, 0.0f, 0.25f), glm::vec3(0.7f, 0.3f, 0.4f));
-	Triangle tri4(glm::vec3(0.25f, 0.0f, -0.25f), glm::vec3(0.0f, 0.5f, 0.0f), glm::vec3(0.25f, 0.0f, 0.25f), glm::vec3(0.7f, 0.3f, 0.4f));
+	Triangle tri1(glm::vec3(-0.5f, -0.5f, -0.5f), glm::vec3(0.0f, 0.5f, 0.0f), glm::vec3(0.5, -0.5f, -0.5f), glm::vec3(0.7f, 0.3f, 0.4f));
+	Triangle tri2(glm::vec3(-0.5f, -0.5f, 0.5f), glm::vec3(0.0f, 0.5f, 0.0f), glm::vec3(-0.5f, -0.5f, -0.5f), glm::vec3(0.7f, 0.3f, 0.4f));
+	Triangle tri3(glm::vec3(0.5f, -0.5f, 0.5f), glm::vec3(0.0f, 0.5f, 0.0f), glm::vec3(-0.5f, -0.5f, 0.5f), glm::vec3(0.7f, 0.3f, 0.4f));
+	Triangle tri4(glm::vec3(0.5f, -0.5f, -0.5f), glm::vec3(0.0f, 0.5f, 0.0f), glm::vec3(0.5f, -0.5f, 0.5f), glm::vec3(0.7f, 0.3f, 0.4f));
 	Sphere sph(glm::vec3(0.0f, 0.75f, 0.0f), 0.25f, glm::vec3(0.8f,0.5f,0.3f));
+	Sphere sph2(glm::vec3(-0.75f, -0.25f, 0.0f), 0.25f, glm::vec3(0.5f, 0.8f, 0.3f));
 	Plane pln1(glm::vec3(0.0f,1.0f,0.0f), glm::vec3(0.0f,-0.5f,0.0f), glm::vec3(0.1f,0.2f,0.3f));
 	Plane pln2(glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 0.0f, 2.0f), glm::vec3(0.1f, 0.2f, 0.3f));
 
@@ -30,6 +31,7 @@ int main(void)
 	map.push_back(&tri3);
 	map.push_back(&tri4);
 	map.push_back(&sph);
+	map.push_back(&sph2);
 	map.push_back(&pln1);
 	map.push_back(&pln2);
 
