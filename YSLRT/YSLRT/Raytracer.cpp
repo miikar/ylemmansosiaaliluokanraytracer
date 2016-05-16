@@ -48,7 +48,7 @@ void Raytracer::calculatePixels(void){
 				color = closest->color;
 				
 				float ks = 0.4f;		//specular reflection constant
-				float kd = 0.5f;		//diffuse reflection constant
+				float kd = 0.4f;		//diffuse reflection constant
 				float ka = 0.2f;		//ambient reflection constant
 				float a = 12.0f;		//shininess constant
 
@@ -60,7 +60,7 @@ void Raytracer::calculatePixels(void){
 
 				float st;
 				float shadow = 1.0f;
-				Ray shadowRay(ray.ip.xyz+l*0.0001f, l);
+				Ray shadowRay(ray.ip.xyz+n*0.0001f, l);
 				for (auto i : *map)
 				{
 					st = i->intersect(&shadowRay);
