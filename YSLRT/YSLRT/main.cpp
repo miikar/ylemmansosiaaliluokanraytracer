@@ -6,6 +6,7 @@
 #include <Windows.h>
 #include "Primitives.hpp"
 #include "Raytracer.hpp"
+#include "Model.hpp"
 
 int main(void)
 {
@@ -34,6 +35,8 @@ int main(void)
 	map.push_back(&sph2);
 	map.push_back(&pln1);
 	map.push_back(&pln2);
+
+	Model m("test.obj");
 
 	Raytracer rt(1980, 1080);
 	rt.setMap(&map);
