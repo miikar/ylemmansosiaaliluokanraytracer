@@ -1,6 +1,7 @@
 #include <string>
 #include <vector>
 #include <glm/glm.hpp>
+#include <random>
 #include "Primitives.hpp"
 #include "Raytracer.hpp"
 #include "BMPheader.h"
@@ -18,7 +19,8 @@ void Raytracer::calculatePixels(void){
 	#pragma omp parallel for
 	for (int x = 0; x < width; x++){
 		for (int y = 0; y < height; y++){		
-
+			std::uniform_real_distribution<float> rand( 0.0f, 1.0f );
+			std::mt19937 eng( y+x*y );
 			/* RAYTRACING STARTS HERE */
 			vec2 pIndex = vec2((float)x, (float)y);							 /* Current pixel (x,y) */
 			vec2 uv = pIndex/resolution;									/* Pixel coordinates uv [0.0,1.0] */
@@ -78,7 +80,9 @@ void Raytracer::calculatePixels(void){
 
 				color *= illumination;
 			}
-
+			
+			float jitter = 2.0f / 256.0f;
+			color += ( rand( eng )*2.0f - 1.0f )*jitter;
 
 			color = clamp(color, 0.0f, 1.0f);
 			pixelData[x+width*y] = color;
